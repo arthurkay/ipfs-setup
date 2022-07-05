@@ -14,6 +14,7 @@ setup: git-clone ipfs-cli
 	sed -i 's+WorkingDirectory=.*+WorkingDirectory='"$$(pwd)"'/ipfs-dir/cmd/ipfs+g' ./ipfs.service
 	sed -i 's+ExecStart=.*+ExecStart='"$$(pwd)"'/ipfs-dir/cmd/ipfs/ipfs daemon+g' ./ipfs.service
 	sudo cp ./ipfs.service /etc/systemd/system/
+	$(shell pwd)/ipfs-dir/cmd/ipfs/ipfs init
 	sudo systemctl daemon-reload
 	sudo systemctl enable ipfs
 	sudo systemctl start ipfs
